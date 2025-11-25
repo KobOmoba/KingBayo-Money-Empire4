@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { Ticket, AppState } from './types';
-import { GeminiService } from './services/geminiService';
+import { Ticket, AppState, SportFilter } from './types';
+import { GeminiService } from './service/geminiService';
 import Header from './components/Header';
 import Controls from './components/Controls';
 import TicketDisplay from './components/TicketDisplay';
@@ -97,7 +97,7 @@ const App: React.FC = () => {
           isLoading={state.isLoading}
           onModeChange={(mode) => setState(prev => ({ ...prev, mode }))}
           onRiskChange={(risk) => setState(prev => ({ ...prev, riskLevel: risk }))}
-          onSportFilterChange={(sport) => setState(prev => ({ ...prev, sportFilter: sport }))}
+          onSportFilterChange={(sport) => setState(prev => ({ ...prev, sportFilter: sport as SportFilter }))}
           onGenerate={generateTickets}
         />
 
