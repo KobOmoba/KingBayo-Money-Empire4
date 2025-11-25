@@ -1,11 +1,17 @@
 export interface Match {
-  home: string;
-  away: string;
+  id: string;
+  home?: string;
+  away?: string;
+  teams?: string;
   prediction: string;
   odds: number;
   sport: string;
   league: string;
-  time: string;
+  time?: string;
+  matchTime?: string;
+  confidence: number;
+  reasoning: string;
+  isLive: boolean;
 }
 
 export interface Ticket {
@@ -15,6 +21,8 @@ export interface Ticket {
   confidence: number;
   matches: Match[];
   timestamp: string;
+  reasoning: string;
+  mathematicalEdge: number;
 }
 
 export type Mode = '24h' | 'live' | 'betbuilder';

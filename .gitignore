@@ -131,3 +131,15 @@ dist
 
 # Replit debugger
 .breakpoints
+
+# Vite
+dist-ssr
+*.local
+
+# PWA
+sw.js
+workbox-*.js
+dev-dist/
+
+# Vercel
+.vercel
