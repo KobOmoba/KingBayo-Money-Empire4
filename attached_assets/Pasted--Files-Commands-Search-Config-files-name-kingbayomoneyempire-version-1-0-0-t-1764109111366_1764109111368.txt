@@ -1,0 +1,237 @@
+
+Files
+Commands
+Search
+Config files
+/
+
+{
+  "name": "kingbayomoneyempire",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
+    "autoprefixer": "^10.4.22",
+    "lucide-react": "^0.263.1",
+    "postcss": "^8.5.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.18",
+    "vite-plugin-pwa": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.0"
+  }
+}
+
+npm run dev
+{"program":{"fileNames":["../../node_modules/typescript/lib/lib.es5.d.ts","../../node_modules/typescript/lib/lib.es2015.d.ts","../../node_modules/typescript/lib/lib.es2016.d.ts","../../node_modules/typescript/lib/lib.es2017.d.ts","../../node_modules/typescript/lib/lib.es2018.d.ts","../../node_modules/typescript/lib/lib.es2019.d.ts","../../node_modules/typescript/lib/lib.es2020.d.ts","../../node_modules/typescript/lib/lib.dom.d.ts","../../node_modules/typescript/lib/lib.es2015.core.d.ts","../../node_modules/typescript/lib/lib.es2015.collection.d.ts","../../node_modules/typescript/lib/lib.es2015.generator.d.ts","../../node_modules/typescript/lib/lib.es2015.iterable.d.ts","../../node_modules/typescript/lib/lib.es2015.promise.d.ts","../../node_modules/typescript/lib/lib.es2015.proxy.d.ts","../../node_modules/typescript/lib/lib.es2015.reflect.d.ts","../../node_modules/typescript/lib/lib.es2015.symbol.d.ts","../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts","../../node_modules/typescript/lib/lib.es2016.array.include.d.ts","../../node_modules/typescript/lib/lib.es2017.object.d.ts","../../node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts","../../node_modules/typescript/lib/lib.es2017.string.d.ts","../../node_modules/typescript/lib/lib.es2017.intl.d.ts","../../node_modules/typescript/lib/lib.es2017.typedarrays.d.ts","../../node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts","../../node_modules/typescript/lib/lib.es2018.asynciterable.d.ts","../../node_modules/typescript/lib/lib.es2018.intl.d.ts","../../node_modules/typescript/lib/lib.es2018.promise.d.ts","../../node_modules/typescript/lib/lib.es2018.regexp.d.ts","../../node_modules/typescript/lib/lib.es2019.array.d.ts","../../node_modules/typescript/lib/lib.es2019.object.d.ts","../../node_modules/typescript/lib/lib.es2019.string.d.ts","../../node_modules/typescript/lib/lib.es2019.symbol.d.ts","../../node_modules/typescript/lib/lib.es2019.intl.d.ts","../../node_modules/typescript/lib/lib.es2020.bigint.d.ts","../../node_modules/typescript/lib/lib.es2020.date.d.ts","../../node_modules/typescript/lib/lib.es2020.promise.d.ts","../../node_modules/typescript/lib/lib.es2020.sharedmemory.d.ts","../../node_modules/typescript/lib/lib.es2020.string.d.ts","../../node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts","../../node_modules/typescript/lib/lib.es2020.intl.d.ts","../../node_modules/typescript/lib/lib.es2020.number.d.ts","../../infra/type-overrides.d.ts","../workbox-core/_version.d.ts","../workbox-core/_private/deferred.d.ts","../workbox-core/_private/dontwaitfor.d.ts","../workbox-core/_private/logger.d.ts","./node_modules/@types/trusted-types/lib/index.d.ts","./src/_version.ts","./src/messagesw.ts","./src/utils/workboxevent.ts","./src/utils/workboxeventtarget.ts","./src/utils/urlsmatch.ts","./src/workbox.ts","./src/index.ts","./node_modules/@types/trusted-types/index.d.ts","../../node_modules/@babel/types/lib/index.d.ts","../../node_modules/@types/babel__generator/index.d.ts","../../node_modules/@babel/parser/typings/babel-parser.d.ts","../../node_modules/@types/babel__template/index.d.ts","../../node_modules/@types/babel__traverse/index.d.ts","../../node_modules/@types/babel__core/index.d.ts","../../node_modules/@types/babel__preset-env/index.d.ts","../../node_modules/@types/common-tags/index.d.ts","../../node_modules/@types/eslint/helpers.d.ts","
+
+Add example code to the main JavaScript file
+Checkpoint made
+6 hours ago
+Prepare app for production deployment and PWA features
+11 minutes of work
+Ready to share? Publish this App in a few clicks.
+Autoscale Deployment
+Primary URL
+king-bayo-money-empire-aadesanya173
+.replit.app
+I looked at the preview just now it looked like the css is in disarray
+
+5 hours ago
+Checkpoint made
+5 hours ago
+Saved progress at the end of the loop
+58 seconds of work
+It hasn't improve
+
+5 hours ago
+Checkpoint made
+5 hours ago
+Saved progress at the end of the loop
+39 seconds of work
+npm install -g vercel
+
+5 hours ago
+vercel login
+
+5 hours ago
+vercel --prod
+
+5 hours ago
+Checkpoint made
+5 hours ago
+Update routing and caching configurations for improved Vercel deployment
+1 minute of work
+git init
+
+4 hours ago
+git add .
+
+4 hours ago
+git commit -m "Deploy KingBayo Money Empire - AI Sports Analytics PWA"
+
+4 hours ago
+git branch -M main
+
+4 hours ago
+git remote add origin https://github.com/KobOmoba/Kingbayo_moneyempire.git
+
+4 hours ago
+open index.html and ADD this inside the <head> section:
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          slate: {
+            900: '#0f172a',
+            800: '#1e293b',
+            700: '#334155',
+            600: '#475569',
+          }
+        }
+      }
+    }
+  }
+</script>
+4 hours ago
+Checkpoint made
+4 hours ago
+Add Tailwind CSS configuration and CDN to the main page
+24 seconds of work
+npm run dev
+
+3 hours ago
+Checkpoint made
+3 hours ago
+Saved progress at the end of the loop
+41 seconds of work
+git add .
+git commit -m "Fix CSS styling with Tailwind CDN"
+git push -u origin main --force
+
+3 hours ago
+Where do i find git control
+
+3 hours ago
+Checkpoint made
+3 hours ago
+Saved progress at the end of the loop
+19 seconds of work
+Can't find explorer and tools section
+
+3 hours ago
+git add .
+
+3 hours ago
+Am now connected to github on replit
+
+2 hours ago
+Did something hapoen to my package.json file
+
+16 minutes ago
+Can you copy out the code here for me
+
+15 minutes ago
+package.json
+
+14 minutes ago
+Copy out vite.config.js
+
+7 minutes ago
+Here's your vite.config.js file:
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
+export default defineConfig({
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['**/*'],
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp}'],
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts-cache',
+              expiration: {
+                maxEntries: 10,
+                maxAgeSeconds: 60 * 60 * 24 * 365
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          }
+        ]
+      },
+      manifest: {
+        name: 'KingBayo Money Empire',
+        short_name: 'KingBayo',
+        description: 'AI-powered sports analytics platform for high-probability accumulator slips',
+        theme_color: '#10b981',
+        background_color: '#0f172a',
+        display: 'standalone',
+        scope: '/',
+        start_url: '/',
+        orientation: 'portrait-primary',
+        icons: [
+          {
+            src: '/icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any'
+          },
+          {
+            src: '/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any'
+          },
+          {
+            src: '/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable'
+          }
+        ]
+      }
+    })
+  ],
+  server: {
+    host: '0.0.0.0',
+    port: 5000,
+    allowedHosts: true
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          icons: ['lucide-react']
+        }
+      }
+    }
+  }
+})
