@@ -7,7 +7,7 @@
   ],
   "headers": [
     {
-      "source": "/(.*).html",
+      "source": "/:path(.+\\.html$)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "source": "/workbox-*.js",
+      "source": "/:path(workbox.+\\.js$)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "source": "/assets/(.*)",
+      "source": "/assets/:path(.*)",
       "headers": [
         {
           "key": "Cache-Control",
