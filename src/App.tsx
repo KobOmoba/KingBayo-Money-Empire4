@@ -54,9 +54,13 @@ function App() {
     setState(prev => ({ ...prev, history: [] }));
   };
 
+  const handleToggleDarkMode = () => {
+    setState(prev => ({ ...prev, darkMode: !prev.darkMode }));
+  };
+
   return (
     <div className={`min-h-screen ${state.darkMode ? 'bg-slate-950 text-white' : 'bg-white text-slate-900'}`}>
-      <Header />
+      <Header darkMode={state.darkMode} toggleDarkMode={handleToggleDarkMode} />
       
       <main className="max-w-7xl mx-auto px-4 py-8">
         <Controls
