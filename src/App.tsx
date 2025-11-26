@@ -54,6 +54,33 @@ function App() {
     setState(prev => ({ ...prev, history: [] }));
   };
 
+  const handleExportCSV = () => {
+    if (state.history.length === 0) return;
+    
+    const headers = ['Strategy', 'Total Odds', 'Confidence', 'Matches', 'Reasoning', 'Timestamp'];
+    const rows = state.history.map(ticket => [
+      ticket.strategy,
+      ticket.totalOdds.toFixed(2),
+      (ticket.confidence * 100).toFixed(0) + '%',
+      ticket.matches.length,
+      ticket.reasoning,
+      new Date(ticket.timestamp).toLocaleString()
+    ]);
+
+    const csv = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `kingbayo-history-${Date.now()}.csv`;
+    link.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   const handleToggleDarkMode = () => {
     setState(prev => ({ ...prev, darkMode: !prev.darkMode }));
   };
@@ -96,7 +123,8 @@ function App() {
             <SourceList />
             <HistoryPanel 
               history={state.history} 
-              onClear={handleClearHistory}
+              onClearHistory={handleClearHistory}
+              onExportCSV={handleExportCSV}
             />
           </div>
         </div>
