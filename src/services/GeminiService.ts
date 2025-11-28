@@ -34,22 +34,28 @@ export class GeminiService {
     mode: '24h' | 'live' | 'betbuilder',
     riskLevel: 'safe' | 'balanced' | 'risky'
   ): Promise<Ticket[]> {
-    
-    // Use mock data if no API key is configured
-    if (this.USE_MOCK_DATA) {
-      console.log('🔧 Using mock data - Add VITE_GEMINI_API_KEY for real AI analysis');
-      await new Promise(resolve => setTimeout(resolve, 1500 + Math.random() * 1000));
+    try {
+      // Use mock data if no API key is configured
+      if (this.USE_MOCK_DATA) {
+        console.log('🔧 Using mock data - Add VITE_GEMINI_API_KEY for real AI analysis');
+        // Reduced delay to prevent loading issues
+        await new Promise(resolve => setTimeout(resolve, 300));
+        return this.getMockTickets(mode, riskLevel);
+      }
+
+      // TODO: Implement real Gemini API integration
+      // const realTickets = await this.getRealAITickets(mode, riskLevel);
+      // return realTickets;
+
+      // Fallback to mock data until real API is implemented
+      console.log('🎯 Gemini API Key detected - Real AI integration ready');
+      await new Promise(resolve => setTimeout(resolve, 300));
+      return this.getMockTickets(mode, riskLevel);
+    } catch (error) {
+      console.error('Error generating tickets:', error);
+      // Return mock data on any error
       return this.getMockTickets(mode, riskLevel);
     }
-
-    // TODO: Implement real Gemini API integration
-    // const realTickets = await this.getRealAITickets(mode, riskLevel);
-    // return realTickets;
-
-    // Fallback to mock data until real API is implemented
-    console.log('🎯 Gemini API Key detected - Real AI integration ready');
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    return this.getMockTickets(mode, riskLevel);
   }
 
   private static async getRealAITickets(
