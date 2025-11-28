@@ -64,7 +64,48 @@
       </div>
     </div>
     
+    <div id="error-overlay" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 9999; padding: 20px; overflow-y: auto;"></div>
+    
     <script type="module" src="/src/main.tsx"></script>
+    
+    <script>
+      // Ultra-aggressive error detection that shows on screen
+      window.addEventListener('error', (e) => {
+        const overlay = document.getElementById('error-overlay');
+        overlay.style.display = 'flex';
+        overlay.style.alignItems = 'center';
+        overlay.style.justifyContent = 'center';
+        overlay.innerHTML = `
+          <div style="background: #7f1d1d; border: 3px solid #dc2626; border-radius: 12px; padding: 40px; max-width: 90vw; color: white; font-family: sans-serif; text-align: center;">
+            <h1 style="color: #fca5a5; font-size: 32px; margin: 0 0 20px 0;">❌ ERROR</h1>
+            <p style="color: #fed7aa; margin: 0 0 15px 0; font-size: 16px;">${e.error?.message || e.message || 'Unknown error'}</p>
+            <button onclick="location.reload()" style="background: #2563eb; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 16px; margin-top: 20px;">🔄 Reload</button>
+          </div>
+        `;
+      });
+      
+      // Timeout that WILL show
+      setTimeout(() => {
+        const root = document.getElementById('root');
+        if (root && root.innerHTML.includes('cold-blooded')) {
+          const overlay = document.getElementById('error-overlay');
+          overlay.style.display = 'flex';
+          overlay.style.alignItems = 'center';
+          overlay.style.justifyContent = 'center';
+          overlay.innerHTML = `
+            <div style="background: #7f1d1d; border: 3px solid #dc2626; border-radius: 12px; padding: 40px; max-width: 90vw; color: white; font-family: sans-serif; text-align: center;">
+              <h1 style="color: #fca5a5; font-size: 32px; margin: 0 0 20px 0;">⏱️ TIMEOUT</h1>
+              <p style="color: #fed7aa; margin: 0 0 15px 0; font-size: 16px;">App took more than 5 seconds to load.</p>
+              <p style="color: #fed7aa; margin: 0 0 15px 0; font-size: 14px;">This might be a Vercel deployment issue.</p>
+              <button onclick="location.reload()" style="background: #2563eb; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 16px;">🔄 Try Again</button>
+            </div>
+          `;
+        }
+      }, 5000);
+      
+      // Log startup
+      console.log('🚀 HTML loaded, waiting for React...');
+    </script>
     
     <style>
       @keyframes loading {
