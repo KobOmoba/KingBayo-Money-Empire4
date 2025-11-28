@@ -37,9 +37,8 @@ export class GeminiService {
     try {
       // Use mock data if no API key is configured
       if (this.USE_MOCK_DATA) {
-        console.log('🔧 Using mock data - Add VITE_GEMINI_API_KEY for real AI analysis');
-        // Reduced delay to prevent loading issues
-        await new Promise(resolve => setTimeout(resolve, 300));
+        console.log('🔧 KingBayo Analysis Ready - Using optimized mock data');
+        // Instant generation - no delay
         return this.getMockTickets(mode, riskLevel);
       }
 
@@ -49,7 +48,6 @@ export class GeminiService {
 
       // Fallback to mock data until real API is implemented
       console.log('🎯 Gemini API Key detected - Real AI integration ready');
-      await new Promise(resolve => setTimeout(resolve, 300));
       return this.getMockTickets(mode, riskLevel);
     } catch (error) {
       console.error('Error generating tickets:', error);
