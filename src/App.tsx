@@ -89,7 +89,7 @@ function App() {
     <div className={`min-h-screen ${state.darkMode ? 'bg-slate-950 text-white' : 'bg-white text-slate-900'}`}>
       <Header darkMode={state.darkMode} toggleDarkMode={handleToggleDarkMode} />
       
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-4 py-2 md:py-8">
         <Controls
           mode={state.mode}
           riskLevel={state.riskLevel}

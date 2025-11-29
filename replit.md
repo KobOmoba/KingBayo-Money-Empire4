@@ -6,7 +6,7 @@ KingBayo Money Empire is an AI-powered sports analytics platform that generates 
 
 The application leverages Google's Gemini AI to analyze sports data and generate high-probability accumulator recommendations across global leagues including football, basketball, tennis, cricket, rugby, hockey, volleyball, and handball.
 
-**Production Status**: The app is production-ready and fully functional (November 26, 2025). All components integrated and tested. Ready for Vercel deployment.
+**Production Status**: The app is LIVE on Render with real Gemini AI integration and mobile-optimized UI (November 29, 2025). Full production deployment active.
 
 ## User Preferences
 
@@ -18,12 +18,14 @@ Preferred communication style: Simple, everyday language.
 - Full React component architecture (Header, Controls, TicketDisplay, SourceList, HistoryPanel)
 - TypeScript with strict type checking and path aliases
 - Enhanced Tailwind CSS theme with custom animations and cyber effects
-- GeminiService with mock data (ready for real API)
+- **Real Gemini 2.0 Flash API integration** - Live ticket generation with actual AI analysis
+- Mobile-optimized UI: Compact header, prominent quick-access buttons, centered controls
+- 3 Quick-Scan mode buttons (24H/Live/BetBuilder) + large GENERATE button for mobile accessibility
 - CSV export functionality for ticket history
 - Dark/light mode toggle
 - All 8 sports with global leagues supported
 - Production build optimized and tested (0 errors)
-- Vercel deployment configuration ready
+- Deployed on Render (automatic builds from GitHub)
 
 ### 📋 COMPONENT ARCHITECTURE
 ```
@@ -58,10 +60,11 @@ App (root state management)
 
 ### AI Integration
 
-**Service**: GeminiService with mock data generation  
-**Status**: Ready for real Gemini API integration  
-**Mock Data**: Generates 3 accumulator tickets per scan with realistic odds  
-**API Key**: Configured via `VITE_GEMINI_API_KEY` environment variable  
+**Service**: GeminiService with real Gemini 2.0 Flash API  
+**Status**: ✅ LIVE - Real API generating tickets in production  
+**Tickets Generated**: 3 accumulator tickets per scan with AI analysis  
+**API Key**: Securely stored as `VITE_GEMINI_API_KEY` environment variable  
+**Integration**: @google/generative-ai package with streaming support  
 
 ### Build & Deployment
 
@@ -105,31 +108,38 @@ src/
 - **postcss**: CSS processing
 - **autoprefixer**: CSS vendor prefixing
 
-## Recent Changes (November 26, 2025)
+## Recent Changes (November 29, 2025)
 
-1. **Fixed Import Path Aliases** - Updated vite.config.js with @/ aliases for components, services, types
-2. **Integrated All Components** - Connected Header, Controls, TicketDisplay, SourceList, HistoryPanel in App.tsx
-3. **Added CSV Export** - Implemented handleExportCSV function for ticket history download
-4. **Enhanced HistoryPanel** - Updated to show strategy badges, confidence %, match count with dark mode colors
-5. **Completed State Management** - Full app state handling for tickets, history, UI controls, dark mode
-6. **Production Build Verified** - Successfully built to production with 0 errors
+1. **Integrated Real Gemini AI** - Connected Gemini 2.0 Flash API for live ticket generation
+2. **Mobile UI Optimization** - Reduced header height, added 3 quick-scan buttons, enlarged GENERATE button for phone accessibility
+3. **Quick-Access Buttons** - 📊 24H SCAN / 🔴 LIVE SCAN / 🎯 BET BUILDER with instant generation
+4. **Prominent Controls Layout** - Moved buttons to center of mobile screen with better visibility
+5. **Compact Header** - Minimized branding section on mobile (reduced from py-2 to py-1)
+6. **Deployed to Render** - Live production deployment with automatic GitHub CI/CD integration
 
-## Deployment Instructions
+## Deployment Status (Render)
 
-The app is ready to deploy to Vercel:
+**Live URL**: https://kingbayo-[something].onrender.com/ (LIVE NOW)
 
-1. Push to GitHub: All code is ready for version control
-2. Connect to Vercel: Link your GitHub repository
-3. Add Environment Variable: Set `VITE_GEMINI_API_KEY` in Vercel dashboard
-4. Deploy: Vercel will auto-detect and build your React app
+The app is actively deployed on Render with:
+- Automatic builds on GitHub pushes
+- Real Gemini API key configured
+- Mobile-responsive interface live
+- All 3 scan modes functional
+- CSV export working
+- Dark/light mode toggle active
 
-The app will be live at a Vercel URL and automatically redeploy on GitHub pushes.
+**To Deploy Updates**:
+1. Push code changes to GitHub (KobOmoba/KingBayo-money-Empire3)
+2. Render auto-detects and rebuilds (2-3 minutes)
+3. Visit live URL to see updates
 
-## Next Steps for Enhancement
+## Future Enhancements
 
-1. **Real Gemini API Integration** - Replace mock data with actual API calls
+1. ✅ **Real Gemini API Integration** - COMPLETE - Live in production
 2. **Live Match Updates** - Implement WebSocket for real-time odds/match data
-3. **User Authentication** - Add login system for saving preferences
+3. **User Authentication** - Add login system for saving preferences  
 4. **Database** - Store user tickets and betting history
 5. **Mobile App** - Build native versions for iOS/Android
 6. **Advanced Filters** - Add league-specific odds constraints and filters
+7. **API Rate Limiting** - Implement caching for repeated scans
