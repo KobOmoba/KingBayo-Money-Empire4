@@ -1,4 +1,5 @@
 import { Ticket, Match } from '../types';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const KINGBAYO_SYSTEM_PROMPT = `
 YOU ARE THE KINGBAYO WARLORD - A COLD-BLOODED ANALYTICAL PREDATOR
@@ -42,13 +43,10 @@ export class GeminiService {
         return this.getMockTickets(mode, riskLevel);
       }
 
-      // TODO: Implement real Gemini API integration
-      // const realTickets = await this.getRealAITickets(mode, riskLevel);
-      // return realTickets;
-
-      // Fallback to mock data until real API is implemented
-      console.log('🎯 Gemini API Key detected - Real AI integration ready');
-      return this.getMockTickets(mode, riskLevel);
+      // Use real Gemini API
+      console.log('🤖 Using real Gemini AI for analysis...');
+      const realTickets = await this.getRealAITickets(mode, riskLevel);
+      return realTickets.length > 0 ? realTickets : this.getMockTickets(mode, riskLevel);
     } catch (error) {
       console.error('Error generating tickets:', error);
       // Return mock data on any error
@@ -60,9 +58,67 @@ export class GeminiService {
     mode: '24h' | 'live' | 'betbuilder',
     riskLevel: 'safe' | 'balanced' | 'risky'
   ): Promise<Ticket[]> {
-    // Placeholder for real Gemini API implementation
-    // This will be implemented when API key is added
-    throw new Error('Real AI integration not yet implemented');
+    try {
+      const genAI = new GoogleGenerativeAI(this.API_KEY);
+      const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+
+      const modeDescription = mode === '24h' ? 'Pre-match 24-hour analysis' : 
+                             mode === 'live' ? 'Live match momentum detection' : 
+                             'Bet builder correlated opportunities';
+
+      const prompt = `${KINGBAYO_SYSTEM_PROMPT}
+
+MODE: ${modeDescription}
+RISK LEVEL: ${riskLevel.toUpperCase()}
+
+Analyze current sports opportunities and generate 3 accumulator betting slips with:
+- 5-10 matches per accumulator
+- Total odds between 5.0-10.0
+- Each match: sport, league, teams, prediction, odds, confidence %, reasoning
+
+Return as JSON array of tickets with matches. Be specific with real-world sports data if available.`;
+
+      const result = await model.generateContent(prompt);
+      const responseText = result.response.text();
+
+      // Parse JSON from response
+      const jsonMatch = responseText.match(/\[[\s\S]*\]/);
+      if (!jsonMatch) {
+        console.warn('Could not parse AI response, using mock data');
+        return this.getMockTickets(mode, riskLevel);
+      }
+
+      const aiTickets = JSON.parse(jsonMatch[0]);
+      
+      // Transform AI response to Ticket format
+      return aiTickets.slice(0, 3).map((ticket: any, idx: number) => ({
+        id: `ticket-${Date.now()}-${idx + 1}`,
+        strategy: riskLevel === 'safe' ? 'The Iron Bank' : 
+                  riskLevel === 'balanced' ? 'The Bookie Basher' : 
+                  'The High-Yield Assassin',
+        matches: (ticket.matches || []).slice(0, 10).map((m: any) => ({
+          id: m.id || `match-${Date.now()}-${Math.random()}`,
+          sport: m.sport || 'Football',
+          league: m.league || 'Global',
+          teams: m.teams || 'TBD',
+          matchTime: m.matchTime || '00:00',
+          prediction: m.prediction || 'Over/Under',
+          odds: parseFloat(m.odds) || 1.5,
+          confidence: parseFloat(m.confidence) || 0.5,
+          reasoning: m.reasoning || 'AI-generated analysis',
+          isLive: mode === 'live'
+        })),
+        totalOdds: parseFloat(ticket.totalOdds) || (riskLevel === 'safe' ? 6.0 : riskLevel === 'balanced' ? 8.0 : 9.0),
+        confidence: parseFloat(ticket.confidence) || (riskLevel === 'safe' ? 0.8 : riskLevel === 'balanced' ? 0.7 : 0.6),
+        timestamp: new Date().toISOString(),
+        reasoning: ticket.reasoning || 'AI-powered analysis',
+        mathematicalEdge: parseFloat(ticket.mathematicalEdge) || (riskLevel === 'safe' ? 0.15 : riskLevel === 'balanced' ? 0.20 : 0.25)
+      }));
+    } catch (error) {
+      console.error('Gemini API error:', error);
+      // Fallback to mock data on error
+      return this.getMockTickets(mode, riskLevel);
+    }
   }
 
   private static getMockTickets(
