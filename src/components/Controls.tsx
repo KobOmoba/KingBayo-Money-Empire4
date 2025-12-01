@@ -49,15 +49,6 @@ const Controls: React.FC<ControlsProps> = ({ mode, riskLevel, isLoading, onModeC
             🎯 BET BUILDER
           </button>
         </div>
-
-        <button
-          onClick={onGenerate}
-          disabled={isLoading}
-          className="w-full bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 disabled:from-slate-600 disabled:to-slate-600 text-white font-bold py-3 md:py-4 px-4 rounded-lg transition-all flex items-center justify-center gap-2 text-sm md:text-lg shadow-lg disabled:cursor-not-allowed"
-        >
-          <Zap className="w-5 h-5" />
-          {isLoading ? 'GENERATING...' : 'GENERATE TICKETS'}
-        </button>
       </div>
 
       <div className="bg-slate-800/60 border border-slate-700 rounded-lg p-3 md:p-4">

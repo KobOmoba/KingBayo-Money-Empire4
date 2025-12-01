@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { Zap } from 'lucide-react';
 import Header from './components/Header';
 import Controls from './components/Controls';
 import TicketDisplay from './components/TicketDisplay';
@@ -94,7 +95,7 @@ function App() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           <div className="lg:col-span-2">
             {state.tickets.length > 0 && <TicketDisplay tickets={state.tickets} />}
             {!state.isLoading && state.tickets.length === 0 && (
@@ -112,6 +113,17 @@ function App() {
               onExportCSV={handleExportCSV}
             />
           </div>
+        </div>
+
+        <div className="bg-gradient-to-t from-slate-950 to-transparent pt-12 pb-8">
+          <button
+            onClick={handleGenerate}
+            disabled={state.isLoading}
+            className="w-full bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 disabled:from-slate-600 disabled:to-slate-600 text-white font-bold py-4 md:py-5 px-6 rounded-lg transition-all flex items-center justify-center gap-3 text-base md:text-xl shadow-2xl disabled:cursor-not-allowed"
+          >
+            <Zap className="w-6 h-6" />
+            {state.isLoading ? 'GENERATING...' : 'GENERATE TICKETS NOW'}
+          </button>
         </div>
       </main>
     </div>
