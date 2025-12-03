@@ -30,10 +30,11 @@ function App() {
         history: [...tickets, ...prev.history].slice(0, 50),
       }));
     } catch (error) {
+      // CRITICAL FIX: Ensure full error message is displayed from the service
       setState(prev => ({
         ...prev,
         isLoading: false,
-        error: error instanceof Error ? error.message : 'Generation failed',
+        error: error instanceof Error ? error.message : 'Generation failed: An unknown error occurred.',
       }));
     }
   }, [state.mode, state.riskLevel]);
