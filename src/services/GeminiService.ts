@@ -24,6 +24,7 @@ Return as JSON array with this structure:
 }]`;
 
 export class GeminiService {
+  // CRITICAL FIX 1: Access the API Key. The key must be set in your Render/Vercel environment as VITE_GEMINI_API_KEY.
   private static readonly API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
   static async generateTickets(
@@ -31,8 +32,9 @@ export class GeminiService {
     riskLevel: 'safe' | 'balanced' | 'risky'
   ): Promise<Ticket[]> {
     try {
-      if (!this.API_KEY) {
-        return this.getMockTickets(mode, riskLevel);
+      if (!this.API_KEY || this.API_KEY === 'YOUR_API_KEY_HERE') {
+        // If the key is missing/placeholder, throw an error to show the user, instead of silently returning mock data.
+        throw new Error("Gemini API Key is not configured. Please set VITE_GEMINI_API_KEY in your deployment environment.");
       }
 
       const genAI = new GoogleGenerativeAI(this.API_KEY);
@@ -48,7 +50,10 @@ Strategy: ${riskLevel === 'safe' ? 'The Iron Bank (1.25-1.45 odds per leg)' : ri
       const text = result.response.text();
       const jsonMatch = text.match(/\[[\s\S]*\]/);
       
-      if (!jsonMatch) return this.getMockTickets(mode, riskLevel);
+      if (!jsonMatch) {
+          // Fallback to error if JSON is unparseable
+          throw new Error("AI response format error: Could not extract valid JSON array.");
+      }
 
       const aiTickets = JSON.parse(jsonMatch[0]);
       
@@ -73,13 +78,19 @@ Strategy: ${riskLevel === 'safe' ? 'The Iron Bank (1.25-1.45 odds per leg)' : ri
         reasoning: ticket.reasoning || 'Optimized accumulator',
         mathematicalEdge: parseFloat(ticket.mathematicalEdge) || 0.2
       }));
-    } catch (error) {
+    } catch (error: unknown) { // CRITICAL FIX 2: Explicitly type the error to avoid TS7006
       console.error('AI Error:', error);
-      return this.getMockTickets(mode, riskLevel);
+      // Re-throw the error so App.tsx can show a user-friendly message
+      if (error instanceof Error) {
+        throw error;
+      }
+      throw new Error('An unknown error occurred during AI generation.');
     }
   }
 
+  // Removed getMockTickets function since we want real data or a visible error.
   private static getMockTickets(mode: '24h' | 'live' | 'betbuilder', riskLevel: 'safe' | 'balanced' | 'risky'): Ticket[] {
+    // Left this here just in case, but it will no longer be called unless manually added back.
     const strategies = { safe: 'The Iron Bank', balanced: 'The Bookie Basher', risky: 'The High-Yield Assassin' };
     const odds = { safe: 1.35, balanced: 1.65, risky: 1.95 };
 
